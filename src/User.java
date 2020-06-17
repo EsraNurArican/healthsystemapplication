@@ -16,7 +16,7 @@ public class User implements HealthSystemUsers {
      */
     @Override
     public Boolean verifyUser(String name, String verifyPassword){
-         return loginName.equals(name) & password.equals(verifyPassword);
+         return (loginName.equals(name) && password.equals(verifyPassword));
     }
 
     /**
