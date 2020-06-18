@@ -9,6 +9,21 @@ public class User implements HealthSystemUsers {
     private Hospital hospital;
 
     /**
+     * Creates a person with given information.
+     * @param personalData personal data of user
+     * @param loginName login name of user
+     * @param password password of user
+     * @param hospital the hospital to which the user belongs
+     */
+    public User(PersonalData personalData, String loginName, String password, Hospital hospital)
+    {
+        this.personalData = personalData;
+        this.loginName = loginName;
+        this.password = password;
+        this.hospital = hospital;
+    }
+
+    /**
      * This method verifies if given user is valid
      * @param name user's name
      * @param verifyPassword user's password
@@ -81,6 +96,11 @@ public class User implements HealthSystemUsers {
      */
     public void setPersonalData(PersonalData personalData) {
         this.personalData = personalData;
+    }
+
+    @Override
+    public int compareTo(HealthSystemUsers o) {
+        return getPersonalData().compareTo(o.getPersonalData());
     }
 }
 
