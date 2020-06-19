@@ -1,5 +1,6 @@
-public class Nurse extends User {
+import java.util.NoSuchElementException;
 
+public class Nurse extends User {
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -9,5 +10,17 @@ public class Nurse extends User {
      */
     public Nurse(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
+    }
+    /**
+     * Adds to the operations information of the given patient.
+     * @param patient   patient to add operations
+     * @param operation added operations
+     * @throws NoSuchElementException if patient be not exist in hospital
+     */
+    public void addOperation(Patient patient, String operation){
+        Hospital tempHospital = getHospital();
+        if(tempHospital.getPatientByID(patient.getPersonalData().getID()) == null)
+            throw new NoSuchElementException();
+        tempHospital.getPatientByID(patient.getPersonalData().getID()).getMedicalData().addOperations(operation);
     }
 }
