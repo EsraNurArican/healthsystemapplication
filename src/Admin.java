@@ -49,7 +49,15 @@ public class Admin extends User {
     public boolean addPharmacist(Pharmacist pharmacist){
         return getHospital().addPharmacist(pharmacist);
     }
-    public void editPersonelData(Patient patient){
+    public void editPersonelData(User user){
+
+
+
+    }
+
+    public void editMedicalData(Patient patient){
+
+
 
 
 
