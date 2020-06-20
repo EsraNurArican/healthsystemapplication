@@ -84,6 +84,15 @@ public class Appointment {
     public Patient getPatient(){
         return patient;
     }
-
+    
+    public String toString(){
+        String toReturn="";
+        toReturn+="Patient name: "+patient.getPersonalData().getName()+"\n";
+        toReturn+="Patient surname: "+patient.getPersonalData().getSurname()+"\n";
+        toReturn+="Doctor name: "+doctor.getPersonalData().getName()+"\n";
+        toReturn+="Doctor surname: "+doctor.getPersonalData().getSurname()+"\n";
+        toReturn+="Appointment date:"+getDateJava()+"\n";
+        return toReturn;
+    }
 
 }

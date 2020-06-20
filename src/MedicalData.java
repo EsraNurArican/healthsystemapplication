@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 public class MedicalData {
@@ -45,8 +46,8 @@ public class MedicalData {
         tests.add(test);
         this.bloodType = bloodType;
         notes.add(note);
-        //operations.add(operation);
-        //prescriptions.add(prescription);
+        operations.add(operation);
+        prescriptions.add(prescription);
     }
     /**
      * Returns prescriptions.
@@ -84,5 +85,29 @@ public class MedicalData {
      */
     public String getBloodType() {
         return bloodType;
+    }
+
+    public String toString(){
+        String toReturn="";
+        toReturn+="\nBlood type: "+ bloodType +" \n";
+        toReturn+="\nNotes: \n";
+        for (String string : notes) {
+            toReturn+=string+"\n";
+        }
+        toReturn+="\nOperations: \n";
+        for (String string : operations) {
+            toReturn+=string+"\n";
+        }
+        toReturn+="\nTests: \n";
+        for (String string : tests) {
+            toReturn+=string+"\n";
+        }
+        toReturn+="\nPrescriptions: \n";
+        Iterator<Prescription> iter = prescriptions.iterator();
+        while(iter.hasNext()){
+            toReturn+=iter.next().getMedications()+"\n";
+        }
+        return toReturn;
+       
     }
 }

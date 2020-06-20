@@ -15,5 +15,8 @@ public class Prescription {
     public String getMedications() {
         return medications;
     }
+    public String toString(){
+        return getMedications();
+    }
 
 }
