@@ -69,5 +69,18 @@ public class PersonalData implements Comparable<PersonalData> {
     public int compareTo(PersonalData o) {
         return getID() - o.getID();
     }
+    
+    @Override
+    /**
+     * Overridden toString method to show personal data informations
+     * @return String personal information.
+     */
+    public String toString() {
+        return "PersonalData{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", ID=" + ID +
+                '}';
+    }
 }
 
