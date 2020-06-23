@@ -68,7 +68,7 @@ public class UserInterface {
 						
 							break;
 						case "5":
-							Pharmacist pharmacist = new Pharmacist(null, null, null, null);
+							Pharmacist pharmacist = new Pharmacist(null, null, null, null,null);
 							takeData(scan,"pharmacist",hospital,pharmacist);
 							if(admin.addPharmacist(pharmacist))
 								System.out.println("DONE");
