@@ -49,17 +49,80 @@ public class Admin extends User {
     public boolean addPharmacist(Pharmacist pharmacist){
         return getHospital().addPharmacist(pharmacist);
     }
-    public void editPersonelData(User user){
-
-
-
+    /**
+     * Remove Patient
+     * @param patient that is removed
+     * @return removed patient
+     */
+    public HealthSystemUsers removePatient(Patient patient){
+        return getHospital().removePatient(patient);
+    }
+    /**
+     * Remove Doctor
+     * @param doctor that is removed
+     * @return true if remove is successful, otherwise false
+     */
+    public boolean removeDoctor(Doctor doctor){
+        return getHospital().removeDoctor(doctor);
+    }
+    /**
+     * Remove Nurse
+     * @param nurse that is removed
+     * @return true if remove is successful, otherwise false
+     */
+    public boolean removeNurse(Nurse nurse){
+        return getHospital().removeNurse(nurse);
+    }
+    /**
+     * Remove Pharmacist
+     * @param pharmacist that is removed
+     * @return true if remove is successful, otherwise false
+     */
+    public boolean removePharmacist(Pharmacist pharmacist){
+        return getHospital().removePharmacist(pharmacist);
+    }
+    /**
+     * Remove Lab Employee
+     * @param labEmployee that is removed
+     * @return true if remove is successful, otherwise false
+     */
+    public boolean removeLabEmployee(LabEmployee labEmployee){
+        return getHospital().removeLabEmployee(labEmployee);
     }
 
-    public void editMedicalData(Patient patient){
-
-
-
-
-
+    /**
+     * Edit Personal Data (name)
+     * @param user whose personal data name information will be updated
+     * @param name new name
+     */
+    public void editPersonalDataName(User user,String name){
+        PersonalData temp = user.getPersonalData();
+        temp.changeName(name);
+    }
+    /**
+     * Edit Personal Data (surname)
+     * @param user whose personal data surname information will be updated
+     * @param surname new surname
+     */
+    public void editPersonalDataSurname(User user,String surname){
+        PersonalData temp = user.getPersonalData();
+        temp.changeSurname(surname);
+    }
+    /**
+     * Edit medical data (Blood type)
+     * @param patient whose personal data name information will be updated
+     * @param bloodType new blood type
+     */
+    public void editMedicalDataBloodType(Patient patient,String bloodType){
+        MedicalData temp = patient.getMedicalData();
+        temp.setBloodType(bloodType);
+    }
+    /**
+     * Add announcement
+     * @param doctor whose new announcement will be added
+     * @param announcement new announcement
+     */
+    public void addAnnouncement(Doctor doctor,String announcement){
+        doctor.addAnnouncement(announcement);
     }
 }
