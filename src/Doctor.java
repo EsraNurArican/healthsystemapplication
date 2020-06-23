@@ -191,4 +191,14 @@ public class Doctor extends User{
             }
         }
     }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Expertise: ").append(expertise).append("\n");
+        stringBuilder.append("Appointment: ");
+        for (Appointment appointment : appointments) {
+            stringBuilder.append(appointment.toString());
+        }
+        return stringBuilder.toString();
+    }
 }
