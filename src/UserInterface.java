@@ -1,4 +1,4 @@
-package project;
+
 import java.util.*;
 public class UserInterface {
 	
@@ -125,8 +125,11 @@ public class UserInterface {
 								id=takeId(scan,"patient");
 								Patient patient = hospital.getPatientByID(id);
 								if(patient!=null) {
-									// TODO : will be arranged according to the Prescription
-									Prescription prescription= new Prescription();  
+									
+									System.out.println("Enter Prescription : ");
+									c1=scan.nextLine();
+									c1=c1.trim();
+									Prescription prescription= new Prescription(c1); 
 									doctor.addPrescription(patient, prescription);
 									System.out.println("DONE");
 								}
@@ -152,7 +155,7 @@ public class UserInterface {
 								
 									id=takeId(scan,"patient");
 									Patient patient1 = hospital.getPatientByID(id);
-									System.out.println(doctor.getPatientData(patient1).toString()); //TODO : Medical data toString
+									System.out.println(doctor.getPatientData(patient1).toString()); 
 									
 								} catch (Exception e) {
 									System.out.println("There is no patient \n");
@@ -340,7 +343,29 @@ public class UserInterface {
 									System.out.println("No medical data has been created yet");
 								break;
 							case "2":
-								patient.getAppointments();//TODO : get appointment for print all appointment
+								if(patient.getAppointments()!=null) {
+									Queue<Appointment> appointments = new LinkedList<>();
+									boolean fl = false;
+									for(int i=0;i<patient.getAppointments().size();i++) {	
+										Appointment temp=patient.getAppointments().poll();
+										if(temp!=null) {
+											fl=true;
+											System.out.println(temp.toString());
+											System.out.println("");
+											appointments.add(temp);
+										}
+									}
+									if(!fl)
+										System.out.println("There is no appointment");
+									for(int i=0;i<appointments.size();i++) {
+										Appointment temp=appointments.poll();
+										if(temp!=null) {
+											patient.getAppointments().add(temp);
+										}
+									}
+									
+									
+								}
 								
 								break;
 							case "3":
@@ -422,6 +447,8 @@ public class UserInterface {
 		
 		
 	}
+	
+	
 
 	
 }
