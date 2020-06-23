@@ -344,10 +344,10 @@ public class UserInterface {
 								break;
 							case "2":
 								if(patient.getAppointments()!=null) {
-									Queue<Appointment> appointments = new LinkedList<>();
+									ArrayList<Appointment> appointments = new ArrayList<>();
 									boolean fl = false;
 									for(int i=0;i<patient.getAppointments().size();i++) {	
-										Appointment temp=patient.getAppointments().poll();
+										Appointment temp=patient.getAppointments().get(i);
 										if(temp!=null) {
 											fl=true;
 											System.out.println(temp.toString());
@@ -358,7 +358,7 @@ public class UserInterface {
 									if(!fl)
 										System.out.println("There is no appointment");
 									for(int i=0;i<appointments.size();i++) {
-										Appointment temp=appointments.poll();
+										Appointment temp=appointments.get(i);
 										if(temp!=null) {
 											patient.getAppointments().add(temp);
 										}

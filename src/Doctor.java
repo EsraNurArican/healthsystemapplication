@@ -1,11 +1,16 @@
-import java.util.LinkedList;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.Scanner;
+
 
 public class Doctor extends User{
     static int currentID=0;
     private String expertise;
-    private Queue<Appointment> appointments;
+    private ArrayList<Appointment> appointments;
+    final String[] appointmentSlots= {"9","10","11"};
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -15,12 +20,67 @@ public class Doctor extends User{
      */
     public Doctor(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
-        appointments = new LinkedList<>();
+        appointments = new ArrayList<Appointment>();
     }
 
     static int getNextID(){
         currentID++;
         return currentID-1;
+    }
+    /**
+     * Sorts appointments using java mergesort. 
+     */
+    public void sortAppointments(){
+        appointments.sort(null);
+    }
+
+    /**
+     * Adds given appointment.
+     */
+    public void addAppointment(Appointment app){
+        appointments.add(app);
+        sortAppointments();
+    }
+
+    /**
+     * Appointment dialogue for patien
+     */
+    public void appointmentDialogue(Patient patient){
+        Integer options=0;
+        Boolean timeFree=true;
+        HashMap<Integer,GregorianCalendar> times = new HashMap<>();
+        GregorianCalendar time= new GregorianCalendar();
+        time.set(GregorianCalendar.MINUTE, 0);
+        time.set(GregorianCalendar.MILLISECOND,0);
+        time.set(GregorianCalendar.SECOND,0);
+        for(int i=0;i<3;i++){
+            time.roll(GregorianCalendar.DAY_OF_MONTH, true);
+            for (String string : appointmentSlots) {
+                time.set(GregorianCalendar.HOUR, Integer.parseInt(string));
+                for (Appointment appointment : appointments) {
+                    if(appointment.isSameTime(time)){
+                        timeFree=false;
+                    }
+                }
+                if(timeFree){
+                    options++;
+                    times.put(options, (GregorianCalendar)time.clone());
+                    System.out.println("ID:"+ options +" Time:"+time.toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh:ss")));
+                }
+                timeFree=true;
+            }
+        }
+        if(options==0){
+            System.out.println("No available dates for this doctor.");
+        }
+        System.out.println("Enter id of the slot you want to take.");
+        Scanner scan= new Scanner(System.in);
+        Integer selected = Integer.parseInt(scan.nextLine());
+        if(!times.containsKey(selected)){
+            System.out.println("Invalid ID.");
+        }
+        System.out.println("Selected time:"+times.get(selected).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh:ss")));
+        new Appointment(this, patient, times.get(selected));
     }
 
     /**
@@ -34,13 +94,13 @@ public class Doctor extends User{
     public Doctor(PersonalData personalData, String loginName, String password, Hospital hospital,String expertise){
         super(personalData, loginName, password, hospital);
         this.expertise = expertise;
-        appointments = new LinkedList<>();
+        appointments = new ArrayList<>();
     }
     /**
      * Getter method for appointments
      * @return appointments object for user
      */
-    public Queue<Appointment> getAppointments() {
+    public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
     /**
@@ -54,7 +114,7 @@ public class Doctor extends User{
      * Sets appointments with new Appointments object
      * @param appointments new appointments object
      */
-    public void setAppointments(Queue<Appointment> appointments) {
+    public void setAppointments(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
     }
     /**
@@ -78,10 +138,13 @@ public class Doctor extends User{
      * @return nearby appointment if appointment is not null, otherwise return null
      */
     public Appointment getNearbyAppointments(){
-        if(appointments == null)
-            return null;
-        else
-            return appointments.element();
+        sortAppointments();
+        for (Appointment appointment : appointments) {
+            if(appointment.isActive()){
+                return appointment;
+            }
+        }
+        return null;
     }
     /**
      * The wanted patient is founded in the hospital.
@@ -96,5 +159,15 @@ public class Doctor extends User{
         if(tempPatient == null)
             throw new NoSuchElementException();
         return tempPatient.getMedicalData();
+    }
+    /**
+     * Prints doctors appointments
+     */
+    public void printAppointments(){
+        for(Appointment a :appointments){
+            if(a.isActive()){
+                System.out.println(a.toString());
+            }
+        }
     }
 }

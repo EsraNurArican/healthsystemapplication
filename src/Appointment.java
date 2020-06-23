@@ -1,24 +1,22 @@
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.GregorianCalendar;
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
     private Doctor doctor;  //Doctor on this appointment
     private Patient patient;    // Patient of appointment
-    private String date;    //Date as string
     private GregorianCalendar dateJava;    //Date as Gregorian calender
-
     /**
-     * Appointment constructor String version
+     * Appointment constructor that takes a java GregorianCalender class. 
      * @param doctor
      * @param patient
-     * @param date
+     * @param cal
      */
-    Appointment(Doctor doctor, Patient patient, String date){
+    Appointment(Doctor doctor, Patient patient, GregorianCalendar cal){
         this.doctor=doctor;
         this.patient=patient;
-        this.date=date;
-        //doctor.addAppointment(this);
-        //patient.addAppointment(this);
+        dateJava=cal;
+        doctor.addAppointment(this);
+        patient.addAppointment(this);
     }
     /**
      * Appointment constructor with java GregorianCalender class. 
@@ -49,7 +47,6 @@ public class Appointment {
         GregorianCalendar now = new GregorianCalendar();
         now.setTime(new Date());
         active = 0<dateJava.compareTo(now);
-        System.out.println("date"+getDateJava());
         return active;
     }
 
@@ -58,15 +55,7 @@ public class Appointment {
      * @return
      */
     public String getDateJava(){
-        return dateJava.toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
-    }
-
-    /**
-     * Returns date from date string.
-     * @return
-     */
-    public String getDate(){
-        return date;
+        return dateJava.toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh:00"));
     }
 
     /**
@@ -85,6 +74,9 @@ public class Appointment {
         return patient;
     }
     
+    /**
+     * Returns details as string.
+     */
     public String toString(){
         String toReturn="";
         toReturn+="Patient name: "+patient.getPersonalData().getName()+"\n";
@@ -94,5 +86,33 @@ public class Appointment {
         toReturn+="Appointment date:"+getDateJava()+"\n";
         return toReturn;
     }
-
+    /**
+     * Compares date with given appointment.
+     */
+    public int compareTo(Appointment toCompare){
+        return this.dateJava.compareTo(toCompare.dateJava);
+    }
+    /**
+     * Compares date with given date.
+     */
+    public int compareWithDate(GregorianCalendar date){
+        return this.dateJava.compareTo(date);
+    }
+    /**
+     * Returns if two times are the same.
+     * @param toCompare
+     * @return
+     */
+    public Boolean isSameTime(GregorianCalendar toCompare){
+        //System.out.println("called");
+        String thisDate= dateJava.toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh"));
+        String otherDate = toCompare.toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh"));
+        if(thisDate.equals(otherDate)){
+            //System.out.println(thisDate+"="+otherDate);
+            return true;
+        }else{
+           // System.out.println(thisDate+"!="+otherDate);
+        }
+        return false;
+    }
 }

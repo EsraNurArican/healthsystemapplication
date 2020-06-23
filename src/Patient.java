@@ -1,11 +1,9 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
 
 public class Patient extends User {
     static int currentID=0;
     private MedicalData medicalData;
-    private Queue<Appointment> appointments;
-
+    private ArrayList<Appointment> appointments;
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -16,7 +14,7 @@ public class Patient extends User {
     public Patient(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
         medicalData = new MedicalData();
-        appointments = new LinkedList<>();
+        appointments = new ArrayList<>();
     }
 
     static int getNextID(){
@@ -40,22 +38,31 @@ public class Patient extends User {
                    String bloodType, String note, String operation, Prescription prescription){
         super(personalData, loginName, password, hospital);
         medicalData = new MedicalData(test,bloodType,note,operation,prescription);
-        appointments = new LinkedList<>();
+        appointments = new ArrayList<>();
     }
 
     /**
      * Setter method for appointments
      * @param appointments add new appointments object
      */
-    public void setAppointments(Queue<Appointment> appointments) {
+    public void setAppointments(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public void addAppointment(Appointment app){
+        appointments.add(app);
+        sortAppointments();
+    }
+
+    public void sortAppointments(){
+        appointments.sort(null);
     }
 
     /**
      * Getter method for appointments
      * @return appointments objects
      */
-    public Queue<Appointment> getAppointments() {
+    public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
     /**
@@ -71,5 +78,15 @@ public class Patient extends User {
      */
     public MedicalData getMedicalData() {
         return medicalData;
+    }
+    /**
+     * Prints patients appointments
+     */
+    public void printAppointments(){
+        for(Appointment a :appointments){
+            if(a.isActive()){
+                System.out.println(a.toString());
+            }
+        }
     }
 }
