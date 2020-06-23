@@ -86,7 +86,9 @@ public class MedicalData {
     public String getBloodType() {
         return bloodType;
     }
-
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
     public String toString(){
         String toReturn="";
         toReturn+="\nBlood type: "+ bloodType +" \n";
