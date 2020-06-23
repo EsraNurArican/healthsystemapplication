@@ -89,4 +89,16 @@ public class Patient extends User {
             }
         }
     }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Medical data : ").append(medicalData.toString()).append("\n");
+        stringBuilder.append("Appointments : ");
+        for(Appointment a :appointments){
+            if(a.isActive()){
+                stringBuilder.append(a.toString());
+            }
+        }
+        return stringBuilder.toString();
+    }
 }
