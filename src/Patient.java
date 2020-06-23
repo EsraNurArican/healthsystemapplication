@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Patient extends User {
+    static int currentID=0;
     private MedicalData medicalData;
     private Queue<Appointment> appointments;
 
@@ -17,6 +18,12 @@ public class Patient extends User {
         medicalData = new MedicalData();
         appointments = new LinkedList<>();
     }
+
+    static int getNextID(){
+        currentID++;
+        return currentID-1;
+    }
+
     /**
      * Creates a person with given information.
      * @param personalData  personal data of user

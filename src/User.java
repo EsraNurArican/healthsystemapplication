@@ -23,6 +23,7 @@ public class User implements HealthSystemUsers {
         this.hospital = hospital;
     }
 
+
     /**
      * This method verifies if given user is valid
      * @param name user's name

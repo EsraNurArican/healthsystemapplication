@@ -1,5 +1,5 @@
 public class Pharmacist extends User {
-
+    static int currentID=0;
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -10,4 +10,10 @@ public class Pharmacist extends User {
     public Pharmacist(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
     }
+
+    static int getNextID(){
+        currentID++;
+        return currentID-1;
+    }
+
 }

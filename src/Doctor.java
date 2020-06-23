@@ -3,6 +3,7 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class Doctor extends User{
+    static int currentID=0;
     private String expertise;
     private Queue<Appointment> appointments;
     /**
@@ -15,6 +16,11 @@ public class Doctor extends User{
     public Doctor(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
         appointments = new LinkedList<>();
+    }
+
+    static int getNextID(){
+        currentID++;
+        return currentID-1;
     }
 
     /**
