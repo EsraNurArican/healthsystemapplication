@@ -72,12 +72,14 @@ public class Doctor extends User{
         }
         if(options==0){
             System.out.println("No available dates for this doctor.");
+            return;
         }
         System.out.println("Enter id of the slot you want to take.");
         Scanner scan= new Scanner(System.in);
         Integer selected = Integer.parseInt(scan.nextLine());
         if(!times.containsKey(selected)){
             System.out.println("Invalid ID.");
+            return;
         }
         System.out.println("Selected time:"+times.get(selected).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu hh:ss")));
         new Appointment(this, patient, times.get(selected));
