@@ -11,6 +11,7 @@ public class Doctor extends User{
     private String expertise;
     private ArrayList<Appointment> appointments;
     final String[] appointmentSlots= {"9","10","11"};
+    private Stack<String> announcement;
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -21,8 +22,26 @@ public class Doctor extends User{
     public Doctor(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
         appointments = new ArrayList<Appointment>();
+        announcement = new Stack<>();
     }
-
+    /**
+     * Print announcement
+     * @throws NoSuchElementException if stack announcement is empty
+     */
+    public void printAnnouncement(){
+        if(announcement.isEmpty())
+            throw new NoSuchElementException();
+        else{
+            int i=1;
+            while (!announcement.isEmpty()){
+                System.out.println("1. " + announcement.pop());
+                i++;
+            }
+        }
+    }
+    public void addAnnouncement(String announcemet_){
+        announcement.add(announcemet_);
+    }
     static int getNextID(){
         currentID++;
         return currentID-1;
