@@ -134,7 +134,23 @@ public class Hospital
      * @return true if lab employee doesn't exist. Otherwise false
      */
     public boolean addLabEmployee(LabEmployee labEmployee) { return labEmployees.add(labEmployee); }
-
+    public HealthSystemUsers removePatient(Patient patient){
+        return patients.remove(patient);
+    }
+    
+    public boolean removeDoctor(Doctor doctor){
+        return doctors.remove(doctor);
+    }
+    public boolean removeNurse(Nurse nurse){
+        return nurses.remove(nurse);
+    }
+    public boolean removePharmacist(Pharmacist pharmacist){
+        return pharmacists.remove(pharmacist);
+    }
+    public boolean removeLabEmployee(LabEmployee labEmployee){
+        return labEmployees.remove(labEmployee);
+    }
+    
     /**
      * Returns string representation of the hospital.
      * @return string representation of the hospital
