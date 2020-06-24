@@ -1,13 +1,14 @@
 package DataStructures;
+
 /** An Edge represents a relationship between two
  *  vertices.
  *  @author Koffman and Wolfgang
  */
-public class Edge {
+public class Edge<E> {
     /** The source vertex */
-    private int source;
+    private E source;
     /** The destination vertex */
-    private int dest;
+    private E dest;
     /** The weight */
     private double weight;
     /** Construct an Edge with a source of from
@@ -15,7 +16,7 @@ public class Edge {
      * @param source - The source vertex
      * @param dest - The destination vertex
      */
-    public Edge(int source, int dest) {
+    public Edge(E source, E dest) {
         this.source = source;
         this.dest = dest;
         weight = 1.0;
@@ -26,7 +27,7 @@ public class Edge {
      * @param dest - The destination vertex
      * @param w - The weight
      */
-    public Edge(int source, int dest, double w) {
+    public Edge(E source, E dest, double w) {
         this.source = source;
         this.dest = dest;
         weight = w;
@@ -34,13 +35,13 @@ public class Edge {
     /** Get the source
      * @return The value of source
      */
-    public int getSource() {
+    public E getSource() {
         return source;
     }
     /** Get the destination
      * @return The value of dest
      */
-    public int getDest() {
+    public E getDest() {
         return dest;
     }
     /** Get the weight
@@ -54,9 +55,9 @@ public class Edge {
      */
     public String toString() {
         StringBuffer sb = new StringBuffer("[(");
-        sb.append(source);
+        sb.append(source.toString());
         sb.append(", ");
-        sb.append(dest);
+        sb.append(dest.toString());
         sb.append("): ");
         sb.append(weight);
         sb.append("]");
@@ -70,18 +71,11 @@ public class Edge {
      */
     public boolean equals(Object obj) {
         if (obj instanceof Edge) {
-            Edge edge = (Edge) obj;
+            Edge<E> edge = (Edge) obj;
             return (source == edge.source && dest == edge.dest);
         }
         else {
             return false;
         }
-    }
-    /** Return a hash code for an edge.
-     * The hash code is the source shifted left 16 bits exclusive or with the dest.
-     * @return a hash code for an edge
-     */
-    public int hashCode() {
-        return (source << 16) ^ dest;
     }
 }
