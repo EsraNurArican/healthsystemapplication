@@ -7,7 +7,7 @@ public class Prescription {
      * Creates prescription with given string
      * @param medications
      */
-    Prescription(String medications){
+    public Prescription(String medications){
         this.medications=medications;
     }
     /**
