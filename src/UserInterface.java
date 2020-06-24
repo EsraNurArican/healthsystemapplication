@@ -1,4 +1,6 @@
 import java.util.*;
+
+import HealthSystem.Hospital;
 public class UserInterface {
 	
 	
@@ -661,6 +663,11 @@ public class UserInterface {
 					if(entry.getKey().verifyUser(c1,c2)) {
 						Patient patient = (Patient) entry.getKey();
 						System.out.println("Welcome  "+patient.getPersonalData().getName());
+						if(hospital.getFamilyDoctors().containsKey(patient)){
+							Doctor familyDoc= hospital.getPatientsFamilyDoctor(patient);
+						System.out.println("Your family doctor: DR. " + familyDoc.getPersonalData().getName()
+						+" "+familyDoc.getPersonalData().getSurname());
+						}
 						loop6 : while(true) {
 							System.out.print("Enter Operation Number \n 1-See Medical Data \n "
 									+ "2-See Appointments \n 3-Take Appointment \n 4-Return Main Menu");
