@@ -1,6 +1,6 @@
 import java.util.*;
 
-import HealthSystem.Hospital;
+import HealthSystem.*;
 public class UserInterface {
 	
 	
