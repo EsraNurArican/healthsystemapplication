@@ -27,11 +27,7 @@ public class Pharmacist extends User {
     }
     public void printPrescription(Patient patient){
         ArrayList<Prescription> tempPrescription = patient.getMedicalData().getPrescriptions();
-        int i=1;
-        for (Prescription prescription : tempPrescription) {
-            System.out.println(i + ") " + prescription.toString() + "\n");
-            i++;
-        }
+        System.out.println("Last prescription: " + tempPrescription.get(tempPrescription.size()-1));
     }
 
     @Override
