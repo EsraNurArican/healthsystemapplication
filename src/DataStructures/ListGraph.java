@@ -1,19 +1,18 @@
 package DataStructures;
+import HealthSystem.Doctor;
 import java.util.*;
-import java.io.*;
 
 /** A ListGraph is an extension of the AbstractGraph abstract class
  *   that uses an array of lists to represent the edges.
  *   @author Koffman and Wolfgang
  */
 
-public class ListGraph
-        extends AbstractGraph {
+public class ListGraph extends AbstractGraph {
 
     // Data Field
     /** An array of Lists to contain the edges that
      originate with each vertex. */
-    private List < Edge > [] edges;
+    private List < Edge<Doctor> > [] edges;
 
     /** Construct a graph with the specified number of
      vertices and directionality.
@@ -24,7 +23,7 @@ public class ListGraph
         super(numV, directed);
         edges = new List[numV];
         for (int i = 0; i < numV; i++) {
-            edges[i] = new LinkedList < Edge > ();
+            edges[i] = new LinkedList <> ();
         }
     }
 
@@ -33,24 +32,24 @@ public class ListGraph
      @param dest The destination vertex
      @return true if there is an edge from source to dest
      */
-    public boolean isEdge(int source, int dest) {
-        return edges[source].contains(new Edge(source, dest));
+    public boolean isEdge(Doctor source, Doctor dest) {
+        return edges[source.getPersonalData().getID()].contains(new Edge<>(source, dest));
     }
 
     /** Insert a new edge into the graph.
      @param edge The new edge
      */
-    public void insert(Edge edge) {
-        edges[edge.getSource()].add(edge);
+    public void insert(Edge<Doctor> edge) {
+        edges[edge.getSource().getPersonalData().getID()].add(edge);
         if (!isDirected()) {
-            edges[edge.getDest()].add(new Edge(edge.getDest(),
+            edges[edge.getDest().getPersonalData().getID()].add(new Edge<>(edge.getDest(),
                     edge.getSource(),
                     edge.getWeight()));
         }
     }
 
-    public Iterator < Edge > edgeIterator(int source) {
-        return edges[source].iterator();
+    public Iterator < Edge <Doctor>> edgeIterator(Doctor source) {
+        return edges[source.getPersonalData().getID()].iterator();
     }
 
     /** Get the edge between two vertices. If an
@@ -60,41 +59,13 @@ public class ListGraph
      @param dest The destination
      @return the edge between these two vertices
      */
-    public Edge getEdge(int source, int dest) {
-        Edge target =
-                new Edge(source, dest, Double.POSITIVE_INFINITY);
-        for (Edge edge : edges[source]) {
+    public Edge<Doctor> getEdge(Doctor source, Doctor dest) {
+        Edge<Doctor> target = new Edge<>(source, dest, Double.POSITIVE_INFINITY);
+        for (Edge<Doctor> edge : edges[source.getPersonalData().getID()]) {
             if (edge.equals(target))
                 return edge; // Desired edge found, return it.
         }
         // Assert: All edges for source checked.
         return target; // Desired edge not found.
     }
-
-    /** Load the edges of a graph from the data in an input file.
-     The file should contain a series of lines, each line
-     with two or three data values. The first is the source
-     the second is the destination, and the optional third
-     is the weight
-     @param bufferedReader The BufferedReader that is connected
-     to the file that contains the data
-     @throws IOException - If an I/O error occurs
-     */
-    public void loadEdgesFromFile(BufferedReader bufferedReader) throws
-            IOException {
-        /**** BEGIN EXERCISE ****/
-        String line;
-        while ( (line = bufferedReader.readLine()) != null
-                && line.length() != 0) {
-            Scanner sc = new Scanner(line);
-            int source = sc.nextInt();
-            int dest = sc.nextInt();
-            double weight = 1.0;
-            if (sc.hasNextDouble())
-                weight = sc.nextDouble();
-            insert(new Edge(source, dest, weight));
-        }
-        /**** END EXERCISE ****/
-    }
-
 }
