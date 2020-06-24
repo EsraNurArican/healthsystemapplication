@@ -3,7 +3,11 @@ package HealthSystem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+
+import DataStructures.Edge;
+import DataStructures.ListGraph;
 import DataStructures.SkipList;
+
 
 /**
  * Keeps whole information about hospital.
@@ -27,6 +31,9 @@ public class Hospital
     private ArrayList<HealthSystemUsers> labEmployees;
     /** Family doctors in the hospital */
     private TreeMap<HealthSystemUsers,HealthSystemUsers> familyDoctors;
+    /**
+     * Friend doctors in the hospital */
+    private ListGraph friendDoctors;
 
     /**
      * Builds a hospital system with given information.
@@ -42,6 +49,7 @@ public class Hospital
         pharmacists = new ArrayList<>();
         labEmployees = new ArrayList<>();
         familyDoctors = new TreeMap<>();
+        friendDoctors = new ListGraph(5,false);
     }
 
     /** Patients getter.
@@ -49,33 +57,46 @@ public class Hospital
      */
     public TreeMap<HealthSystemUsers, HealthSystemUsers> getPatients() { return patients; }
 
-	/** Doctors getter.
-	 * @return Doctors
-	 */
-	public SkipList<HealthSystemUsers> getDoctors() { return doctors; }
+    /** Doctors getter.
+     * @return Doctors
+     */
+    public SkipList<HealthSystemUsers> getDoctors() { return doctors; }
 
-	/** Nurses getter.
-	 * @return Nurses
-	 */
-	public ArrayList<HealthSystemUsers> getNurses() { return nurses; }
+    /** Nurses getter.
+     * @return Nurses
+     */
+    public ArrayList<HealthSystemUsers> getNurses() { return nurses; }
 
-	/** Pharmacists getter.
-	 * @return HealthSystem.Pharmacist
-	 */
-	public ArrayList<HealthSystemUsers> getPharmacists() { return pharmacists; }
+    /** Pharmacists getter.
+     * @return HealthSystem.Pharmacist
+     */
+    public ArrayList<HealthSystemUsers> getPharmacists() { return pharmacists; }
 
-	/** Lab employees getter.
-	 * @return Lab employees
-	 */
-	public ArrayList<HealthSystemUsers> getLabEmployees() { return labEmployees; }
+    /** Lab employees getter.
+     * @return Lab employees
+     */
+    public ArrayList<HealthSystemUsers> getLabEmployees() { return labEmployees; }
 
     /**
      * Family doctors getter.
      * @return Family doctor
      */
-	public TreeMap<HealthSystemUsers,HealthSystemUsers> getFamilyDoctors() { return familyDoctors; }
+    public TreeMap<HealthSystemUsers,HealthSystemUsers> getFamilyDoctors() { return familyDoctors; }
 
-	/**
+    /**
+     * Friend doctors getter
+     * @return Friend doctors
+     */
+    public ListGraph getFriendDoctors() {
+        return friendDoctors;
+    }
+    public void addFriendDoctor(Doctor doctor1,Doctor doctor2){
+        friendDoctors.insert(new Edge<>(doctor1, doctor2));
+    }
+    public void removeFriendDoctor(Doctor doctor){
+        friendDoctors.remove(doctor);
+    }
+    /**
      * Returns administrator.
      * @return administrator
      */
