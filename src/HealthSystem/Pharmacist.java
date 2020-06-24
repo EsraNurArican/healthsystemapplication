@@ -1,5 +1,7 @@
 package HealthSystem;
 
+import java.util.Stack;
+
 public class Pharmacist extends User {
     static int currentID=0;
     private String pharmacyName;
@@ -24,6 +26,14 @@ public class Pharmacist extends User {
     static int getNextID(){
         currentID++;
         return currentID-1;
+    }
+    public void printPrescription(Patient patient){
+        Stack<Prescription> tempPrescription = patient.getMedicalData().getPrescriptions();
+        int i=1;
+        while(!tempPrescription.isEmpty()){
+            System.out.println(i + ") " + tempPrescription.pop().toString() + "\n");
+            i++;
+        }
     }
     @Override
     public String toString() {
