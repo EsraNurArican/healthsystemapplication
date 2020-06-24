@@ -28,9 +28,10 @@ public class Hospital
      * @param admin administrator of the hospital
      * @param name name of the hospital
      */
-    public Hospital(Admin admin, String name)
+    public Hospital( String name)
     {
-        this.admin = admin;
+    	
+        this.admin = new Admin(new PersonalData("admin", "surname", 0), "admin", "123", this);
         this.name = name;
         patients = new TreeMap<>();
         doctors = new ArrayList<>();
@@ -38,8 +39,54 @@ public class Hospital
         pharmacists = new ArrayList<>();
         labEmployees = new ArrayList<>();
     }
+    
+    
 
-    /**
+    /** Patients getter.
+     * @return Patients
+     */
+    public TreeMap<HealthSystemUsers, HealthSystemUsers> getPatients() {
+		return patients;
+	}
+
+
+	/** Doctors getter.
+	 * @return Doctors
+	 */
+	public ArrayList<HealthSystemUsers> getDoctors() {
+		return doctors;
+	}
+
+
+	/** Nurses getter.
+	 * @return Nurses
+	 */
+	public ArrayList<HealthSystemUsers> getNurses() {
+		return nurses;
+	}
+
+
+	/** Pharmacists getter.
+	 * @return Pharmacist
+	 */
+	public ArrayList<HealthSystemUsers> getPharmacists() {
+		return pharmacists;
+	}
+
+
+
+	/** Lab employees getter.
+	 * @return Lab employees.
+	 */
+	public ArrayList<HealthSystemUsers> getLabEmployees() {
+		return labEmployees;
+	}
+
+
+
+
+
+	/**
      * Returns administrator.
      * @return administrator
      */
