@@ -27,7 +27,7 @@ public class LabEmployee extends User {
             throw new NoSuchElementException();
         tempHospital.getPatientByID(patient.getPersonalData().getID()).getMedicalData().addTest(test);
     }
-    static int getNextID(){
+    public static int getNextID(){
         currentID++;
         return currentID-1;
     }
