@@ -133,4 +133,7 @@ public class Admin extends User {
     public void addAnnouncement(Doctor doctor,String announcement){
         doctor.addAnnouncement(announcement);
     }
+    public void printFriendDoctor(){
+        System.out.println(getHospital().getFriendDoctors().toString());
+    }
 }
