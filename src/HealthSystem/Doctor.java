@@ -1,5 +1,7 @@
 package HealthSystem;
 
+package healthSystem;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -36,7 +38,7 @@ public class Doctor extends User{
         else{
             int i=1;
             while (!announcement.isEmpty()){
-                System.out.println("1. " + announcement.pop());
+                System.out.println(i + announcement.pop());
                 i++;
             }
         }
@@ -44,7 +46,7 @@ public class Doctor extends User{
     public void addAnnouncement(String announcemet_){
         announcement.add(announcemet_);
     }
-    static int getNextID(){
+    public static int getNextID(){
         currentID++;
         return currentID-1;
     }
