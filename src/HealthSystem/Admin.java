@@ -19,13 +19,19 @@ public class Admin extends User {
     public boolean addPatient(Patient patient){
         return getHospital().addPatient(patient);
     }
+    public void addFriendDoctor(Doctor doctor1,Doctor doctor2){
+        getHospital().addFriendDoctor(doctor1,doctor2);
+    }
+    public void removeFriendDoctor(Doctor doctor){
+        getHospital().removeFriendDoctor(doctor);
+    }
     /**
      * Adds given doctor to the system.
      * @param doctor given doctor
      * @return true if doctor doesn't exist. Otherwise false
      */
     public boolean addDoctor(Doctor doctor){
-       return getHospital().addDoctor(doctor);
+        return getHospital().addDoctor(doctor);
     }
     /**
      * Adds given lab employee to the system.
