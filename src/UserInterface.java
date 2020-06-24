@@ -1,5 +1,3 @@
-import HealthSystem.*;
-
 import java.util.*;
 public class UserInterface {
 	
@@ -20,7 +18,7 @@ public class UserInterface {
 			switch (c1) {
 			case "1":
 				
-				System.out.print("Enter HealthSystem.User Name :");
+				System.out.print("User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -414,7 +412,7 @@ public class UserInterface {
 								Patient patient = hospital.getPatientByID(id);
 								if(patient!=null) {
 									
-									System.out.println("Enter HealthSystem.Prescription : ");
+									System.out.println("Enter .Prescription : ");
 									c1=scan.nextLine();
 									c1=c1.trim();
 									Prescription prescription= new Prescription(c1);
@@ -483,7 +481,7 @@ public class UserInterface {
 					if(hospital.getNurses().get(i).verifyUser(c1, c2)) {
 						fl=false;
 						Nurse nurse  = (Nurse) hospital.getNurses().get(i);
-						System.out.println("Welcome HealthSystem.Nurse "+nurse.getPersonalData().getName());
+						System.out.println("Nurse "+nurse.getPersonalData().getName());
 						loop3 : while(true) {
 							System.out.println("Enter Operation Number : \n 1-Add Operation \n 2-Return Main Menu");
 							c1=scan.nextLine();
@@ -522,7 +520,7 @@ public class UserInterface {
 				break;
 				
 			case "4":
-				System.out.print("Enter HealthSystem.User Name :");
+				System.out.print("Enter .User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -574,7 +572,7 @@ public class UserInterface {
 				break;
 				
 			case "5":
-				System.out.print("Enter HealthSystem.User Name :");
+				System.out.print("User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -586,7 +584,7 @@ public class UserInterface {
 					if(hospital.getPharmacists().get(i).verifyUser(c1,c2)) {
 						fl=false;
 						Pharmacist pharmacist = (Pharmacist) hospital.getPharmacists().get(i);
-						System.out.println("Welcome HealthSystem.Pharmacist "+pharmacist.getPersonalData().getName());
+						System.out.println("Welcome .Pharmacist "+pharmacist.getPersonalData().getName());
 						loop5 : while(true) {
 							System.out.println("Enter Operation Number \n  1-Get Prepection \n 2-Return Main Menu");
 							c1=scan.nextLine();
@@ -594,7 +592,12 @@ public class UserInterface {
 							switch(c1)
 							{
 							case "1":
-								//TODO : pharmacist.getPrespectionById
+								printPatient(hospital);
+								id=takeId(scan, "patient");
+								Patient patient1 = hospital.getPatientByID(id);
+								if(patient1!=null) {
+									pharmacist.printPrescription(patient1);
+								}
 								break;
 							case "2":
 								break loop5;
@@ -616,7 +619,7 @@ public class UserInterface {
 				
 			case "6":
 				
-				System.out.print("Enter HealthSystem.User Name :");
+				System.out.print("User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -629,7 +632,7 @@ public class UserInterface {
 						System.out.println("Welcome  "+patient.getPersonalData().getName());
 						loop6 : while(true) {
 							System.out.print("Enter Operation Number \n 1-See Medical Data \n "
-									+ "2-See Appointments \n 3-Take HealthSystem.Appointment \n 4-Return Main Menu");
+									+ "2-See Appointments \n 3-Take Appointment \n 4-Return Main Menu");
 							c1=scan.nextLine();
 							c1=c1.trim();
 							switch(c1)
@@ -696,7 +699,7 @@ public class UserInterface {
 	/**
 	 * Take ID number method
 	 * @param scan Scanner
-	 * @param type HealthSystem.User type
+	 * @param type .User type
 	 * @return ID number
 	 */
 	private  int takeId(Scanner scan,String type) {
@@ -724,9 +727,9 @@ public class UserInterface {
 	
 	/** Take user data method.
 	 * @param scan Scanner
-	 * @param type HealthSystem.User type
-	 * @param hospital HealthSystem.Hospital class
-	 * @param user HealthSystem.User class
+	 * @param type .User type
+	 * @param hospital .Hospital class
+	 * @param user .User class
 	 * @param id ID number
 	 */
 	private  void takeData(Scanner scan,String type,Hospital hospital,User user,int id) {
@@ -755,7 +758,7 @@ public class UserInterface {
 		
 	}
 	/** Print patient information method.
-	 * @param hospital HealthSystem.Hospital class
+	 * @param hospital Hospital class
 	 */
 	private  void printPatient(Hospital hospital) {
 		System.out.println("ID\tNAME\tSURNAME");
@@ -767,8 +770,8 @@ public class UserInterface {
 		
 	}
 	/** Print user information method.
-	 * @param hospital HealthSystem.Hospital class
-	 * @param user HealthSystem.User class
+	 * @param hospital Hospital class
+	 * @param user User class
 	 */
 	private  void printUser(Hospital hospital,ArrayList<HealthSystemUsers> user) {
 		System.out.println("ID\tNAME\tSURNAME");
