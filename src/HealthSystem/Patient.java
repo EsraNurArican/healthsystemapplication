@@ -1,3 +1,5 @@
+package HealthSystem;
+
 import java.util.ArrayList;
 
 public class Patient extends User {

@@ -1,3 +1,5 @@
+package HealthSystem;
+
 public class Admin extends User {
     /**
      * Creates a person with given information.
@@ -50,7 +52,7 @@ public class Admin extends User {
         return getHospital().addPharmacist(pharmacist);
     }
     /**
-     * Remove Patient
+     * Remove HealthSystem.Patient
      * @param patient that is removed
      * @return removed patient
      */
@@ -58,7 +60,7 @@ public class Admin extends User {
         return getHospital().removePatient(patient);
     }
     /**
-     * Remove Doctor
+     * Remove HealthSystem.Doctor
      * @param doctor that is removed
      * @return true if remove is successful, otherwise false
      */
@@ -66,7 +68,7 @@ public class Admin extends User {
         return getHospital().removeDoctor(doctor);
     }
     /**
-     * Remove Nurse
+     * Remove HealthSystem.Nurse
      * @param nurse that is removed
      * @return true if remove is successful, otherwise false
      */
@@ -74,7 +76,7 @@ public class Admin extends User {
         return getHospital().removeNurse(nurse);
     }
     /**
-     * Remove Pharmacist
+     * Remove HealthSystem.Pharmacist
      * @param pharmacist that is removed
      * @return true if remove is successful, otherwise false
      */

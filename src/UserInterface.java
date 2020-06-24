@@ -1,3 +1,5 @@
+import HealthSystem.*;
+
 import java.util.*;
 public class UserInterface {
 	
@@ -11,8 +13,8 @@ public class UserInterface {
 		System.out.println("Welcome Healthy System \n");
 		boolean fl=false;
 		loop : while(true) {
-			System.out.println("Enter User Type Number\n"
-					+ " 1-Admin\n 2-Doctor \n 3-Nurse \n 4-Lab Employee \n 5-Pharmacist \n 6-Patient \n 7-Exist");
+			System.out.println("Enter HealthSystem.User Type Number\n"
+					+ " 1-HealthSystem.Admin\n 2-HealthSystem.Doctor \n 3-HealthSystem.Nurse \n 4-Lab Employee \n 5-HealthSystem.Pharmacist \n 6-HealthSystem.Patient \n 7-Exist");
 			c1=scan.nextLine();
 			c1=c1.trim();
 			switch (c1) {
@@ -26,9 +28,9 @@ public class UserInterface {
 					System.out.println("Welcome admin\n");
 					loop1 : while(true) {
 						System.out.println("Enter Operation Number\n"
-								+ " 1-Add Patient\n 2-Remove Patient \n 3-Add Doctor\n 4-Remove Doctor \n"
+								+ " 1-Add HealthSystem.Patient\n 2-Remove HealthSystem.Patient \n 3-Add HealthSystem.Doctor\n 4-Remove HealthSystem.Doctor \n"
 								+ " 5-Add Lab Employee \n 6-Remove Lab Employee \n"
-								+ " 7-Add Nurse\n 8-Remove Nurse \n 9-Add Pharmacist\n 10-Remove Pharmacist\n"
+								+ " 7-Add HealthSystem.Nurse\n 8-Remove HealthSystem.Nurse \n 9-Add HealthSystem.Pharmacist\n 10-Remove HealthSystem.Pharmacist\n"
 								+ " 11-Edit Personel Data\n 12-Edit Medical Data\n"
 								+ " 13-Add Announcement \n 14-Return Main Menu");
 						c1=scan.nextLine();
@@ -66,7 +68,7 @@ public class UserInterface {
 							Doctor doctor = new Doctor(null, null, null, null);
 							id=doctor.getNextID();
 							takeData(scan,"doctor",hospital,doctor,id);
-							System.out.print("Enter Doctor expertise :");
+							System.out.print("Enter HealthSystem.Doctor expertise :");
 							c1=scan.nextLine();
 							c1=c1.trim();
 							doctor.setExpertise(c1);
@@ -181,8 +183,8 @@ public class UserInterface {
 						case "11":
 							
 							loop7:while(true) {
-								System.out.println("Enter User Type Number:\n 1-Doctor\n 2-Nurse\n 3-Lab Employee"
-										+ "\n 4-Pharmacist \n 5-Patient \n 6-Return Admin Menu");
+								System.out.println("Enter HealthSystem.User Type Number:\n 1-HealthSystem.Doctor\n 2-HealthSystem.Nurse\n 3-Lab Employee"
+										+ "\n 4-HealthSystem.Pharmacist \n 5-HealthSystem.Patient \n 6-Return HealthSystem.Admin Menu");
 								c1=scan.nextLine();
 								c1=c1.trim();
 								switch (c1) {
@@ -373,7 +375,7 @@ public class UserInterface {
 				break;
 			
 			case "2":
-				System.out.print("Enter User Name :");
+				System.out.print("Enter HealthSystem.User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -393,8 +395,8 @@ public class UserInterface {
 						
 						
 						loop2 : while(true) {
-							System.out.println("Enter Operation Number : \n 1-Add Prescription \n "
-									+ "2-See Nearby Appointment\n 3-Get Patient Data\n 4-Return Main Menu");
+							System.out.println("Enter Operation Number : \n 1-Add HealthSystem.Prescription \n "
+									+ "2-See Nearby HealthSystem.Appointment\n 3-Get HealthSystem.Patient Data\n 4-Return Main Menu");
 							c1=scan.nextLine();
 							c1=c1.trim();
 							switch (c1) {
@@ -405,10 +407,10 @@ public class UserInterface {
 								Patient patient = hospital.getPatientByID(id);
 								if(patient!=null) {
 									
-									System.out.println("Enter Prescription : ");
+									System.out.println("Enter HealthSystem.Prescription : ");
 									c1=scan.nextLine();
 									c1=c1.trim();
-									Prescription prescription= new Prescription(c1); 
+									Prescription prescription= new Prescription(c1);
 									doctor.addPrescription(patient, prescription);
 									System.out.println("DONE");
 								}
@@ -462,7 +464,7 @@ public class UserInterface {
 				
 			case "3":
 				
-				System.out.print("Enter User Name :");
+				System.out.print("Enter HealthSystem.User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -473,7 +475,7 @@ public class UserInterface {
 					if(hospital.getNurses().get(i).verifyUser(c1, c2)) {
 						fl=false;
 						Nurse nurse  = (Nurse) hospital.getNurses().get(i);
-						System.out.println("Welcome Nurse "+nurse.getPersonalData().getName());
+						System.out.println("Welcome HealthSystem.Nurse "+nurse.getPersonalData().getName());
 						loop3 : while(true) {
 							System.out.println("Enter Operation Number : \n 1-Add Operation \n 2-Return Main Menu");
 							c1=scan.nextLine();
@@ -512,7 +514,7 @@ public class UserInterface {
 				break;
 				
 			case "4":
-				System.out.print("Enter User Name :");
+				System.out.print("Enter HealthSystem.User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -564,7 +566,7 @@ public class UserInterface {
 				break;
 				
 			case "5":
-				System.out.print("Enter User Name :");
+				System.out.print("Enter HealthSystem.User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -576,7 +578,7 @@ public class UserInterface {
 					if(hospital.getPharmacists().get(i).verifyUser(c1,c2)) {
 						fl=false;
 						Pharmacist pharmacist = (Pharmacist) hospital.getPharmacists().get(i);
-						System.out.println("Welcome Pharmacist "+pharmacist.getPersonalData().getName());
+						System.out.println("Welcome HealthSystem.Pharmacist "+pharmacist.getPersonalData().getName());
 						loop5 : while(true) {
 							System.out.println("Enter Operation Number \n  1-Get Prepection \n 2-Return Main Menu");
 							c1=scan.nextLine();
@@ -606,7 +608,7 @@ public class UserInterface {
 				
 			case "6":
 				
-				System.out.print("Enter User Name :");
+				System.out.print("Enter HealthSystem.User Name :");
 				c1=scan.nextLine();
 				c1=c1.trim();
 				System.out.print("Enter Password :");
@@ -619,7 +621,7 @@ public class UserInterface {
 						System.out.println("Welcome  "+patient.getPersonalData().getName());
 						loop6 : while(true) {
 							System.out.print("Enter Operation Number \n 1-See Medical Data \n "
-									+ "2-See Appointments \n 3-Take Appointment \n 4-Return Main Menu");
+									+ "2-See Appointments \n 3-Take HealthSystem.Appointment \n 4-Return Main Menu");
 							c1=scan.nextLine();
 							c1=c1.trim();
 							switch(c1)
@@ -686,7 +688,7 @@ public class UserInterface {
 	/**
 	 * Take ID number method
 	 * @param scan Scanner
-	 * @param type User type
+	 * @param type HealthSystem.User type
 	 * @return ID number
 	 */
 	private static int takeId(Scanner scan,String type) {
@@ -714,9 +716,9 @@ public class UserInterface {
 	
 	/** Take user data method.
 	 * @param scan Scanner
-	 * @param type User type
-	 * @param hospital Hospital class
-	 * @param user User class
+	 * @param type HealthSystem.User type
+	 * @param hospital HealthSystem.Hospital class
+	 * @param user HealthSystem.User class
 	 * @param id ID number
 	 */
 	private static void takeData(Scanner scan,String type,Hospital hospital,User user,int id) {
@@ -745,7 +747,7 @@ public class UserInterface {
 		
 	}
 	/** Print patient information method.
-	 * @param hospital Hospital class
+	 * @param hospital HealthSystem.Hospital class
 	 */
 	private static void printPatient(Hospital hospital) {
 		System.out.println("ID\tNAME\tSURNAME");
@@ -757,8 +759,8 @@ public class UserInterface {
 		
 	}
 	/** Print user information method.
-	 * @param hospital Hospital class
-	 * @param user User class
+	 * @param hospital HealthSystem.Hospital class
+	 * @param user HealthSystem.User class
 	 */
 	private static void printUser(Hospital hospital,ArrayList<HealthSystemUsers> user) {
 		System.out.println("ID\tNAME\tSURNAME");

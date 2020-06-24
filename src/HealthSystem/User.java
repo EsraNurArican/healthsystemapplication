@@ -1,5 +1,7 @@
+package HealthSystem;
+
 /**
- * User class represents all kind of users in a general way in the Health System Application
+ * HealthSystem.User class represents all kind of users in a general way in the Health System Application
  * Common features of user types such as patient, doctor, nurse  are gathered in this class.
  */
 public class User implements HealthSystemUsers {
@@ -45,7 +47,7 @@ public class User implements HealthSystemUsers {
 
     /**
      * Getter method for hospital
-     * @return Hospital object of user
+     * @return HealthSystem.Hospital object of user
      */
     public Hospital getHospital() {
         return hospital;
@@ -68,7 +70,7 @@ public class User implements HealthSystemUsers {
     }
 
     /**
-     * Sets hospital with new Hospital object
+     * Sets hospital with new HealthSystem.Hospital object
      * @param hospital new hospital object
      */
     public void setHospital(Hospital hospital) {
@@ -92,7 +94,7 @@ public class User implements HealthSystemUsers {
     }
 
     /**
-     * Sets the personal data with new PersonalData object
+     * Sets the personal data with new HealthSystem.PersonalData object
      * @param personalData new personalData of the user
      */
     public void setPersonalData(PersonalData personalData) {

@@ -1,3 +1,5 @@
+package HealthSystem;
+
 public class Prescription {
     private String medications; // The prescription text as string
     

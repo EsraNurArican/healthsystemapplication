@@ -1,5 +1,7 @@
+package HealthSystem;
+
 /**
- * PersonalData class represents personal information such as name, surname.
+ * HealthSystem.PersonalData class represents personal information such as name, surname.
  * Includes methods to change personal information.
  */
 public class PersonalData implements Comparable<PersonalData> {
@@ -76,7 +78,7 @@ public class PersonalData implements Comparable<PersonalData> {
      * @return String personal information.
      */
     public String toString() {
-        return "PersonalData{" +
+        return "HealthSystem.PersonalData{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", ID=" + ID +

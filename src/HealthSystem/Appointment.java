@@ -1,12 +1,14 @@
+package HealthSystem;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.GregorianCalendar;
 public class Appointment implements Comparable<Appointment> {
-    private Doctor doctor;  //Doctor on this appointment
-    private Patient patient;    // Patient of appointment
+    private Doctor doctor;  //HealthSystem.Doctor on this appointment
+    private Patient patient;    // HealthSystem.Patient of appointment
     private GregorianCalendar dateJava;    //Date as Gregorian calender
     /**
-     * Appointment constructor that takes a java GregorianCalender class. 
+     * HealthSystem.Appointment constructor that takes a java GregorianCalender class.
      * @param doctor
      * @param patient
      * @param cal
@@ -19,7 +21,7 @@ public class Appointment implements Comparable<Appointment> {
         patient.addAppointment(this);
     }
     /**
-     * Appointment constructor with java GregorianCalender class. 
+     * HealthSystem.Appointment constructor with java GregorianCalender class.
      * Takes year and month as normal. But on months January is 0 amd December is 11.
      * @param doctor
      * @param patient
@@ -79,11 +81,11 @@ public class Appointment implements Comparable<Appointment> {
      */
     public String toString(){
         String toReturn="";
-        toReturn+="Patient name: "+patient.getPersonalData().getName()+"\n";
-        toReturn+="Patient surname: "+patient.getPersonalData().getSurname()+"\n";
-        toReturn+="Doctor name: "+doctor.getPersonalData().getName()+"\n";
-        toReturn+="Doctor surname: "+doctor.getPersonalData().getSurname()+"\n";
-        toReturn+="Appointment date:"+getDateJava()+"\n";
+        toReturn+="HealthSystem.Patient name: "+patient.getPersonalData().getName()+"\n";
+        toReturn+="HealthSystem.Patient surname: "+patient.getPersonalData().getSurname()+"\n";
+        toReturn+="HealthSystem.Doctor name: "+doctor.getPersonalData().getName()+"\n";
+        toReturn+="HealthSystem.Doctor surname: "+doctor.getPersonalData().getSurname()+"\n";
+        toReturn+="HealthSystem.Appointment date:"+getDateJava()+"\n";
         return toReturn;
     }
     /**

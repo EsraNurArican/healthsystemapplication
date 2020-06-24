@@ -1,3 +1,5 @@
+package HealthSystem;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -9,7 +11,7 @@ import DataStructures.SkipList;
  */
 public class Hospital
 {
-    /** Hospital name */
+    /** HealthSystem.Hospital name */
     private String name;
     /** Administrator of the hospital */
     private Admin admin;
@@ -64,7 +66,7 @@ public class Hospital
 
 
 	/** Pharmacists getter.
-	 * @return Pharmacist
+	 * @return HealthSystem.Pharmacist
 	 */
 	public ArrayList<HealthSystemUsers> getPharmacists() {
 		return pharmacists;
@@ -95,7 +97,7 @@ public class Hospital
      * @param id given id
      * @return doctor if doctor is exist. Otherwise null
      */
-    public Doctor getDoctorByID(int id, SkipList<HealthSystemUsers> list) { return (Doctor)list.find(new Doctor(new PersonalData(null,null,id),null,null,null)); }
+    public Doctor getDoctorByID(int id) { return (Doctor)getDoctors().find(new Doctor(new PersonalData(null,null,id),null,null,null)); }
 
     /**
      * Returns nurse of the given id.

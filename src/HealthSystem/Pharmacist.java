@@ -1,3 +1,5 @@
+package HealthSystem;
+
 public class Pharmacist extends User {
     static int currentID=0;
     private String pharmacyName;

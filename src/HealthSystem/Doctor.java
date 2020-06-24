@@ -1,3 +1,5 @@
+package HealthSystem;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -62,7 +64,7 @@ public class Doctor extends User{
     }
 
     /**
-     * Appointment dialogue for patien
+     * HealthSystem.Appointment dialogue for patien
      */
     public void appointmentDialogue(Patient patient){
         Integer options=0;
@@ -195,7 +197,7 @@ public class Doctor extends User{
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Expertise: ").append(expertise).append("\n");
-        stringBuilder.append("Appointment: ");
+        stringBuilder.append("HealthSystem.Appointment: ");
         for (Appointment appointment : appointments) {
             stringBuilder.append(appointment.toString());
         }

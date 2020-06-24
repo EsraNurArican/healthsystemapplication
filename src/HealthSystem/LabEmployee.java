@@ -1,7 +1,10 @@
+package HealthSystem;
+
 import java.util.NoSuchElementException;
 
-public class Nurse extends User {
-    static int currentID=0;
+public class LabEmployee extends User {
+	
+	static int currentID=0;
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -9,25 +12,23 @@ public class Nurse extends User {
      * @param password     password of user
      * @param hospital     the hospital to which the user belongs
      */
-    public Nurse(PersonalData personalData, String loginName, String password, Hospital hospital) {
+    public LabEmployee(PersonalData personalData, String loginName, String password, Hospital hospital) {
         super(personalData, loginName, password, hospital);
     }
-
-    static int getNextID(){
-        currentID++;
-        return currentID-1;
-    }
-
     /**
-     * Adds to the operations information of the given patient.
-     * @param patient   patient to add operations
-     * @param operation added operations
+     * Adds to the test information of the given patient.
+     * @param patient   patient to add test
+     * @param test added test
      * @throws NoSuchElementException if patient be not exist in hospital
      */
-    public void addOperation(Patient patient, String operation){
+    public void addTest(Patient patient, String test){
         Hospital tempHospital = getHospital();
         if(tempHospital.getPatientByID(patient.getPersonalData().getID()) == null)
             throw new NoSuchElementException();
-        tempHospital.getPatientByID(patient.getPersonalData().getID()).getMedicalData().addOperations(operation);
+        tempHospital.getPatientByID(patient.getPersonalData().getID()).getMedicalData().addTest(test);
+    }
+    static int getNextID(){
+        currentID++;
+        return currentID-1;
     }
 }
