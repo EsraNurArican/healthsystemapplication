@@ -19,7 +19,7 @@ public class Patient extends User {
         appointments = new ArrayList<>();
     }
 
-    static int getNextID(){
+    public static int getNextID(){
         currentID++;
         return currentID-1;
     }
