@@ -26,7 +26,10 @@ public class ListGraph extends AbstractGraph {
             edges[i] = new LinkedList <> ();
         }
     }
-
+    
+    public void remove(Doctor source){
+        edges[source.getPersonalData().getID()].remove(source);
+    }
     /** Determine whether an edge exists.
      @param source The source vertex
      @param dest The destination vertex
