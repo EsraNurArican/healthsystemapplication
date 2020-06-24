@@ -15,7 +15,7 @@ public class Hospital
     private String name;
     /** Administrator of the hospital */
     private Admin admin;
-    /** Patients in the hospital */
+    /** Patients in the hospital (Red Black Tree) */
     private TreeMap<HealthSystemUsers,HealthSystemUsers> patients;
     /** Doctors in the hospital */
     private SkipList<HealthSystemUsers> doctors;
@@ -25,6 +25,8 @@ public class Hospital
     private ArrayList<HealthSystemUsers> pharmacists;
     /** Lab employees in the hospital*/
     private ArrayList<HealthSystemUsers> labEmployees;
+    /** Family doctors in the hospital */
+    private TreeMap<HealthSystemUsers,HealthSystemUsers> familyDoctors;
 
     /**
      * Builds a hospital system with given information.
@@ -39,45 +41,39 @@ public class Hospital
         nurses = new ArrayList<>();
         pharmacists = new ArrayList<>();
         labEmployees = new ArrayList<>();
+        familyDoctors = new TreeMap<>();
     }
 
     /** Patients getter.
      * @return Patients
      */
-    public TreeMap<HealthSystemUsers, HealthSystemUsers> getPatients() {
-		return patients;
-	}
-
+    public TreeMap<HealthSystemUsers, HealthSystemUsers> getPatients() { return patients; }
 
 	/** Doctors getter.
 	 * @return Doctors
 	 */
-	public SkipList<HealthSystemUsers> getDoctors() {
-		return doctors;
-	}
-
+	public SkipList<HealthSystemUsers> getDoctors() { return doctors; }
 
 	/** Nurses getter.
 	 * @return Nurses
 	 */
-	public ArrayList<HealthSystemUsers> getNurses() {
-		return nurses;
-	}
-
+	public ArrayList<HealthSystemUsers> getNurses() { return nurses; }
 
 	/** Pharmacists getter.
 	 * @return HealthSystem.Pharmacist
 	 */
-	public ArrayList<HealthSystemUsers> getPharmacists() {
-		return pharmacists;
-	}
+	public ArrayList<HealthSystemUsers> getPharmacists() { return pharmacists; }
 
 	/** Lab employees getter.
-	 * @return Lab employees.
+	 * @return Lab employees
 	 */
-	public ArrayList<HealthSystemUsers> getLabEmployees() {
-		return labEmployees;
-	}
+	public ArrayList<HealthSystemUsers> getLabEmployees() { return labEmployees; }
+
+    /**
+     * Family doctors getter.
+     * @return Family doctor
+     */
+	public TreeMap<HealthSystemUsers,HealthSystemUsers> getFamilyDoctors() { return familyDoctors; }
 
 	/**
      * Returns administrator.
@@ -119,6 +115,13 @@ public class Hospital
      * @return lab employee if lab employee is exist. Otherwise null
      */
     public LabEmployee getLabEmployeeByID(int id) { return (LabEmployee)getUserByID(id,labEmployees); }
+
+    /**
+     * Returns given patient's family doctor.
+     * @param patient given patient
+     * @return doctor if patient has a family doctor. Otherwise null
+     */
+    public Doctor getPatientsFamilyDoctor(Patient patient) { return (Doctor)familyDoctors.get(patient); }
 
     /**
      * Returns hospital status.
@@ -174,23 +177,63 @@ public class Hospital
      * @return true if lab employee doesn't exist. Otherwise false
      */
     public boolean addLabEmployee(LabEmployee labEmployee) { return labEmployees.add(labEmployee); }
-    public HealthSystemUsers removePatient(Patient patient){
-        return patients.remove(patient);
+
+    /**
+     * Adds the given id of doctor to the given patient as a family doctor.
+     * @param patient given patient
+     * @param id given id
+     * @return true if given patient's family doctor doesn't exist. Otherwise false
+     */
+    public boolean addFamilyDoctor(Patient patient, int id)
+    {
+        Doctor doc;
+        if((doc = getDoctorByID(id)) == null)
+            return false;
+        return familyDoctors.put(patient,doc) == null;
     }
-    
-    public boolean removeDoctor(Doctor doctor){
-        return doctors.remove(doctor);
-    }
-    public boolean removeNurse(Nurse nurse){
-        return nurses.remove(nurse);
-    }
-    public boolean removePharmacist(Pharmacist pharmacist){
-        return pharmacists.remove(pharmacist);
-    }
-    public boolean removeLabEmployee(LabEmployee labEmployee){
-        return labEmployees.remove(labEmployee);
-    }
-    
+
+    /**
+     * Removes given patient from the system.
+     * @param patient given patient
+     * @return given patient if patient is exist. Otherwise null
+     */
+    public HealthSystemUsers removePatient(Patient patient){ return patients.remove(patient); }
+
+    /**
+     * Removes given doctor from the system.
+     * @param doctor given doctor
+     * @return true if doctor is exist in the system. Otherwise false
+     */
+    public boolean removeDoctor(Doctor doctor){ return doctors.remove(doctor); }
+
+    /**
+     * Removes given nurse from the system.
+     * @param nurse given nurse
+     * @return true if nurse is exist in the system. Otherwise false
+     */
+    public boolean removeNurse(Nurse nurse){ return nurses.remove(nurse); }
+
+    /**
+     * Removes given pharmacist from the system.
+     * @param pharmacist given pharmacist
+     * @return true if pharmacist is exist in the system. Otherwise false
+     */
+    public boolean removePharmacist(Pharmacist pharmacist){ return pharmacists.remove(pharmacist); }
+
+    /**
+     * Removes given lab employee from the system.
+     * @param labEmployee given lab employee
+     * @return true if lab employee is exist in the system. Otherwise false
+     */
+    public boolean removeLabEmployee(LabEmployee labEmployee){ return labEmployees.remove(labEmployee); }
+
+    /**
+     * Removes given patient's family doctor from the system.
+     * @param patient given patient
+     * @return true if patient has a family doctor. Otherwise false
+     */
+    public boolean removeFamilyDoctor(Patient patient) { return familyDoctors.remove(patient) != null; }
+
     /**
      * Returns string representation of the hospital.
      * @return string representation of the hospital
