@@ -1,7 +1,8 @@
 import java.util.NoSuchElementException;
 
 public class LabEmployee extends User {
-
+	
+	static int currentID=0;
     /**
      * Creates a person with given information.
      * @param personalData personal data of user
@@ -23,5 +24,9 @@ public class LabEmployee extends User {
         if(tempHospital.getPatientByID(patient.getPersonalData().getID()) == null)
             throw new NoSuchElementException();
         tempHospital.getPatientByID(patient.getPersonalData().getID()).getMedicalData().addTest(test);
+    }
+    static int getNextID(){
+        currentID++;
+        return currentID-1;
     }
 }
