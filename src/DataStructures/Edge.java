@@ -1,3 +1,4 @@
+package DataStructures;
 /** An Edge represents a relationship between two
  *  vertices.
  *  @author Koffman and Wolfgang
