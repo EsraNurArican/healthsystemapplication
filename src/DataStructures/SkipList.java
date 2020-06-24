@@ -1,4 +1,4 @@
-package abdcelik.Trees;
+package DataStructures;
 
 import java.util.Arrays;
 import java.util.Random;
