@@ -1,3 +1,4 @@
+package DataStructures;
 /** Abstract base class for graphs. A graph is a set
  *   of vertices and a set of edges. Vertices are
  *   represented by integers from 0 to n - 1. Edges
