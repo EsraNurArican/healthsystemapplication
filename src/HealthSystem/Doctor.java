@@ -64,7 +64,7 @@ public class Doctor extends User{
     }
 
     /**
-     * HealthSystem.Appointment dialogue for patien
+     * HealthSystem.Appointment dialogue for patient
      */
     public void appointmentDialogue(Patient patient){
         Integer options=0;
