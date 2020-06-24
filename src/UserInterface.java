@@ -1,6 +1,9 @@
 import java.util.*;
 
 import HealthSystem.*;
+
+
+
 public class UserInterface {
 	
 	
@@ -41,9 +44,23 @@ public class UserInterface {
 						Admin admin=hospital.getAdmin();
 						switch (c1) {
 						case "1":
+							
 							Patient patient = new Patient(null, "", "", null);
 							id=patient.getNextID();
 							takeData(scan,"patient",hospital,patient,id);
+							if(hospital.getDoctors().size()!=0) {
+								int [] docId = new int [hospital.getDoctors().size()];
+								Iterator<HealthSystemUsers> iterator = hospital.getDoctors().iterator();
+								int i=0;
+								while(iterator.hasNext()) {
+									docId[i]=iterator.next().getPersonalData().getID();
+									i++;
+								}
+								Random rand = new Random(); 
+								int index=rand.nextInt(hospital.getDoctors().size());
+								admin.addFamilyDoctor(patient, docId[index]);
+								
+							}
 							if(admin.addPatient(patient))
 								System.out.println("DONE");
 							break;
