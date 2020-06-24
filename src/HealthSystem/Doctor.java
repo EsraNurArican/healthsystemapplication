@@ -193,6 +193,15 @@ public class Doctor extends User{
             }
         }
     }
+    public void addFriendDoctor(Doctor doctor1,Doctor doctor2){
+        getHospital().addFriendDoctor(doctor1,doctor2);
+    }
+    public void removeFriendDoctor(Doctor doctor){
+        getHospital().removeFriendDoctor(doctor);
+    }
+    public void printFriendDoctor(){
+        System.out.println(getHospital().getFriendDoctors().toString());
+    }
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
