@@ -1,35 +1,71 @@
 package DataStructures;
-/** Abstract base class for graphs. A graph is a set
- *   of vertices and a set of edges. Vertices are
- *   represented by integers from 0 to n - 1. Edges
- *   are ordered pairs of vertices.
+import HealthSystem.Doctor;
+import java.util.*;
+
+/** A ListGraph is an extension of the AbstractGraph abstract class
+ *   that uses an array of lists to represent the edges.
  *   @author Koffman and Wolfgang
  */
-public abstract class AbstractGraph implements Graph {
-    /** The number of vertices */
-    private int numV;
-    /** Flag to indicate whether this is a directed graph */
-    private boolean directed;
-    /** Construct a graph with the specified number of vertices
-     * and the directed flag. If the directed flag is true,
-     * this is a directed graph.
-     * @param numV The number of vertices
-     * @param directed The directed flag
+
+public class ListGraph extends AbstractGraph {
+
+    // Data Field
+    /** An array of Lists to contain the edges that
+     originate with each vertex. */
+    private List < Edge<Doctor> > [] edges;
+
+    /** Construct a graph with the specified number of
+     vertices and directionality.
+     @param numV The number of vertices
+     @param directed The directionality flag
      */
-    public AbstractGraph(int numV, boolean directed) {
-        this.numV = numV;
-        this.directed = directed;
+    public ListGraph(int numV, boolean directed) {
+        super(numV, directed);
+        edges = new List[numV];
+        for (int i = 0; i < numV; i++) {
+            edges[i] = new LinkedList <> ();
+        }
     }
-    /** Return the number of vertices.
-     * @return The number of vertices
+
+    /** Determine whether an edge exists.
+     @param source The source vertex
+     @param dest The destination vertex
+     @return true if there is an edge from source to dest
      */
-    public int getNumV() {
-        return numV;
+    public boolean isEdge(Doctor source, Doctor dest) {
+        return edges[source.getPersonalData().getID()].contains(new Edge<>(source, dest));
     }
-    /** Return whether this is a directed graph.
-     * @return true if this is a directed graph
+
+    /** Insert a new edge into the graph.
+     @param edge The new edge
      */
-    public boolean isDirected() {
-        return directed;
+    public void insert(Edge<Doctor> edge) {
+        edges[edge.getSource().getPersonalData().getID()].add(edge);
+        if (!isDirected()) {
+            edges[edge.getDest().getPersonalData().getID()].add(new Edge<>(edge.getDest(),
+                    edge.getSource(),
+                    edge.getWeight()));
+        }
+    }
+
+    public Iterator < Edge <Doctor>> edgeIterator(Doctor source) {
+        return edges[source.getPersonalData().getID()].iterator();
+    }
+
+    /** Get the edge between two vertices. If an
+     edge does not exist, an Edge with a weight
+     of Double.POSITIVE_INFINITY is returned.
+     @param source The source
+     @param dest The destination
+     @return the edge between these two vertices
+     */
+    public Edge<Doctor> getEdge(Doctor source, Doctor dest) {
+        Edge<Doctor> target = new Edge<>(source, dest, Double.POSITIVE_INFINITY);
+        for (Edge<Doctor> edge : edges[source.getPersonalData().getID()]) {
+            if (edge.equals(target))
+                return edge; // Desired edge found, return it.
+        }
+        // Assert: All edges for source checked.
+        return target; // Desired edge not found.
     }
 }
