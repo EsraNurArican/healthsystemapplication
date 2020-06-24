@@ -1,4 +1,5 @@
 package DataStructures;
+import HealthSystem.Doctor;
 import java.util.*;
 
 /** Interface to specify a Graph ADT. A graph is a set
@@ -22,22 +23,22 @@ public interface Graph {
     /** Insert a new edge into the graph.
      * @param edge The new edge
      */
-    void insert(Edge edge);
+    void insert(Edge<Doctor> edge);
     /** Determine whether an edge exists.
      * @param source The source vertex
      * @param dest The destination vertex
      * @return true if there is an edge from source to dest
      */
-    boolean isEdge(int source, int dest);
+    boolean isEdge(Doctor source, Doctor dest);
     /** Get the edge between two vertices.
      * @param source The source vertex
      * @param dest The destination vertex
      * @return The Edge between these two vertices or an Edge with a weight of Double.POSITIVE_INFINITY if there is no edge
      */
-    Edge getEdge(int source, int dest);
+    Edge<Doctor> getEdge(Doctor source, Doctor dest);
     /** Return an iterator to the edges connected to a given vertex.
      * @param source The source vertex
      * @return An Iterator to the vertices connected to source
      */
-    Iterator < Edge > edgeIterator(int source);
+    Iterator < Edge<Doctor> > edgeIterator(Doctor source);
 }
