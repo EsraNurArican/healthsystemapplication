@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import dataStructures.ListGraph;
+import dataStructures.Edge;
+import dataStructures.ListGraph;
+import dataStructures.SkipList;
 
 
 /**
@@ -30,7 +34,11 @@ public class Hospital
     private ArrayList<HealthSystemUsers> labEmployees;
     /** Family doctors in the hospital */
     private TreeMap<HealthSystemUsers,HealthSystemUsers> familyDoctors;
+    /**
+     * Friend doctors in the hospital */
+    private ListGraph friendDoctors ;
 
+    
     /**
      * Builds a hospital system with given information.
      * @param name name of the hospital
@@ -45,6 +53,7 @@ public class Hospital
         pharmacists = new ArrayList<>();
         labEmployees = new ArrayList<>();
         familyDoctors = new TreeMap<>();
+        friendDoctors = new ListGraph(5,false);
     }
 
     /** Patients getter.
@@ -107,6 +116,20 @@ public class Hospital
     	
     }
 
+    /**
+     * Friend doctors getter
+     * @return Friend doctors
+     */
+    public ListGraph getFriendDoctors() {
+        return friendDoctors;
+    }
+    public void addFriendDoctor(Doctor doctor1,Doctor doctor2){
+        friendDoctors.insert(new Edge<>(doctor1, doctor2));
+    }
+    public void removeFriendDoctor(Doctor doctor){
+        friendDoctors.remove(doctor);
+    }
+    
     /**
      * Returns nurse of the given id.
      * @param id given id
