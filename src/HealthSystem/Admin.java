@@ -136,4 +136,23 @@ public class Admin extends User {
     public void printFriendDoctor(){
         System.out.println(getHospital().getFriendDoctors().toString());
     }
+    /**
+     * Adds the given id of doctor to the given patient as a family doctor.
+     * @param patient given patient
+     * @param id given id
+     * @return true if given patient's family doctor doesn't exist. Otherwise false
+     */
+    public boolean addFamilyDoctor(Patient patient, int id)
+    {
+        Doctor doc;
+        if((doc = getHospital().getDoctorByID(id)) == null)
+            return false;
+        return getHospital().getFamilyDoctors().put(patient,doc) == null;
+    }
+    /**
+     * Removes given patient's family doctor from the system.
+     * @param patient given patient
+     * @return true if patient has a family doctor. Otherwise false
+     */
+    public boolean removeFamilyDoctor(Patient patient) { return getHospital().getFamilyDoctors().remove(patient) != null; }
 }
