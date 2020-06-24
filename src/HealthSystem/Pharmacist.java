@@ -1,7 +1,6 @@
 package HealthSystem;
 
-import java.util.Stack;
-
+import java.util.ArrayList;
 public class Pharmacist extends User {
     static int currentID=0;
     private String pharmacyName;
@@ -28,10 +27,10 @@ public class Pharmacist extends User {
         return currentID-1;
     }
     public void printPrescription(Patient patient){
-        Stack<Prescription> tempPrescription = patient.getMedicalData().getPrescriptions();
+        ArrayList<Prescription> tempPrescription = patient.getMedicalData().getPrescriptions();
         int i=1;
-        while(!tempPrescription.isEmpty()){
-            System.out.println(i + ") " + tempPrescription.pop().toString() + "\n");
+        for (Prescription prescription : tempPrescription) {
+            System.out.println(i + ") " + prescription.toString() + "\n");
             i++;
         }
     }

@@ -1,15 +1,13 @@
 package HealthSystem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 
 public class MedicalData {
     private ArrayList<String> tests;    // Tests of this patient
     private String bloodType;           // Patients bloodtype
     private ArrayList<String> notes;    // Notes on the patient
     private ArrayList<String> operations;// Operations of the patient
-    private Stack<Prescription> prescriptions;  //Prescriptions of the patient
+    private ArrayList<Prescription> prescriptions;  //Prescriptions of the patient
     /**
      * Initializes data structures.
      */
@@ -17,7 +15,7 @@ public class MedicalData {
         tests = new ArrayList<>();
         notes = new ArrayList<>();
         operations = new ArrayList<>();
-        prescriptions = new Stack<>();
+        prescriptions = new ArrayList<>();
     }
 
     /**
@@ -29,7 +27,7 @@ public class MedicalData {
         tests = new ArrayList<>();
         notes = new ArrayList<>();
         operations = new ArrayList<>();
-        prescriptions = new Stack<>();
+        prescriptions = new ArrayList<>();
     }
 
     /**
@@ -44,7 +42,7 @@ public class MedicalData {
         tests = new ArrayList<>();
         notes = new ArrayList<>();
         operations = new ArrayList<>();
-        prescriptions = new Stack<>();
+        prescriptions = new ArrayList<>();
         tests.add(test);
         this.bloodType = bloodType;
         notes.add(note);
@@ -55,7 +53,7 @@ public class MedicalData {
      * Returns prescriptions.
      * @return
      */
-    public Stack<Prescription> getPrescriptions() {
+    public ArrayList<Prescription> getPrescriptions() {
         return prescriptions;
     }
 
@@ -107,9 +105,8 @@ public class MedicalData {
             toReturn+=string+"\n";
         }
         toReturn+="\nPrescriptions: \n";
-        Iterator<Prescription> iter = prescriptions.iterator();
-        while(iter.hasNext()){
-            toReturn+=iter.next().getMedications()+"\n";
+        for (Prescription pres : prescriptions) {
+            toReturn+=pres.getMedications()+"\n";
         }
         return toReturn;
        
