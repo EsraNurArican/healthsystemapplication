@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-import dataStructures.ListGraph;
-import dataStructures.Edge;
-import dataStructures.ListGraph;
-import dataStructures.SkipList;
+import DataStructures.ListGraph;
+import DataStructures.Edge;
+import DataStructures.ListGraph;
+import DataStructures.SkipList;
 
 
 /**
