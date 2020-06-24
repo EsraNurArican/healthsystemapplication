@@ -1,5 +1,5 @@
 package HealthSystem;
-
+import java.util.ArrayList;
 public class Pharmacist extends User {
     static int currentID=0;
     private String pharmacyName;
@@ -25,6 +25,15 @@ public class Pharmacist extends User {
         currentID++;
         return currentID-1;
     }
+    public void printPrescription(Patient patient){
+        ArrayList<Prescription> tempPrescription = patient.getMedicalData().getPrescriptions();
+        int i=1;
+        for (Prescription prescription : tempPrescription) {
+            System.out.println(i + ") " + prescription.toString() + "\n");
+            i++;
+        }
+    }
+
     @Override
     public String toString() {
         return "pharmacyName : " + pharmacyName + '\n';

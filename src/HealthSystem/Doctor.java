@@ -1,7 +1,5 @@
 package HealthSystem;
 
-package healthSystem;
-
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
