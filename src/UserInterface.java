@@ -401,7 +401,7 @@ public class UserInterface {
 						
 						loop2 : while(true) {
 							System.out.println("Enter Operation Number : \n 1-Add Prescription \n "
-									+ "2-See Nearby Appointment\n 3-Get Patient Data\n 4-Return Main Menu");
+									+ "2-See Nearby Appointment\n 3-Get Patient Data\n 4-Add Friend \n 5-Remove Friend \n 6-See Friend \n 7-Return Main Menu");
 							c1=scan.nextLine();
 							c1=c1.trim();
 							switch (c1) {
@@ -449,6 +449,37 @@ public class UserInterface {
 								
 								break;
 							case "4":
+								printDoctor(hospital);
+								id=takeId(scan,"doctor");
+								Doctor doctor2 = hospital.getDoctorByID(id);
+								if(doctor2!=null) {
+									doctor4.addFriendDoctor(doctor4, doctor2);
+								}
+								else
+									System.out.println("Invalid id number !!! Try again \n");
+								
+								break ;
+								
+							case "5":
+								printDoctor(hospital);
+								id=takeId(scan,"doctor");
+								Doctor doctor3 = hospital.getDoctorByID(id);
+								if(doctor3!=null) {
+									doctor4.removeFriendDoctor(doctor3);
+									System.out.println("DONE");
+								}
+									
+								else
+									System.out.println("Invalid id number !!! Try again \n");
+								
+								break ;
+								
+							case "6":
+								
+								doctor4.printFriendDoctor();
+								break ;
+								
+							case "7":
 								break loop2;
 								
 							default:
