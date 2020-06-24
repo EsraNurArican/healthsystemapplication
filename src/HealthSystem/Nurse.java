@@ -15,7 +15,7 @@ public class Nurse extends User {
         super(personalData, loginName, password, hospital);
     }
 
-    static int getNextID(){
+    public static int getNextID(){
         currentID++;
         return currentID-1;
     }
