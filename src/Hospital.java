@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import DataStructures.SkipList;
 
 /**
  * Keeps whole information about hospital.
@@ -15,7 +16,7 @@ public class Hospital
     /** Patients in the hospital */
     private TreeMap<HealthSystemUsers,HealthSystemUsers> patients;
     /** Doctors in the hospital */
-    private ArrayList<HealthSystemUsers> doctors;
+    private SkipList<HealthSystemUsers> doctors;
     /** Nurses in the hospital */
     private ArrayList<HealthSystemUsers> nurses;
     /** Pharmacists in the hospital */
@@ -25,22 +26,18 @@ public class Hospital
 
     /**
      * Builds a hospital system with given information.
-     * @param admin administrator of the hospital
      * @param name name of the hospital
      */
     public Hospital( String name)
     {
-    	
         this.admin = new Admin(new PersonalData("admin", "surname", 0), "admin", "123", this);
         this.name = name;
         patients = new TreeMap<>();
-        doctors = new ArrayList<>();
+        doctors = new SkipList<>();
         nurses = new ArrayList<>();
         pharmacists = new ArrayList<>();
         labEmployees = new ArrayList<>();
     }
-    
-    
 
     /** Patients getter.
      * @return Patients
@@ -53,7 +50,7 @@ public class Hospital
 	/** Doctors getter.
 	 * @return Doctors
 	 */
-	public ArrayList<HealthSystemUsers> getDoctors() {
+	public SkipList<HealthSystemUsers> getDoctors() {
 		return doctors;
 	}
 
@@ -73,18 +70,12 @@ public class Hospital
 		return pharmacists;
 	}
 
-
-
 	/** Lab employees getter.
 	 * @return Lab employees.
 	 */
 	public ArrayList<HealthSystemUsers> getLabEmployees() {
 		return labEmployees;
 	}
-
-
-
-
 
 	/**
      * Returns administrator.
@@ -104,7 +95,7 @@ public class Hospital
      * @param id given id
      * @return doctor if doctor is exist. Otherwise null
      */
-    public Doctor getDoctorByID(int id) { return (Doctor)getUserByID(id,doctors); }
+    public Doctor getDoctorByID(int id, SkipList<HealthSystemUsers> list) { return (Doctor)list.find(new Doctor(new PersonalData(null,null,id),null,null,null)); }
 
     /**
      * Returns nurse of the given id.
